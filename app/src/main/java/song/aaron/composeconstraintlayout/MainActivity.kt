@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import song.aaron.composeconstraintlayout.ui.theme.ComposeConstraintLayoutTheme
 
@@ -70,9 +71,22 @@ fun MainScreen() {
 //        })
 
         // Constraint bias
+//        MyButton(text = "Button1", Modifier.constrainAs(button1) {
+//            top.linkTo(parent.top, margin = 60.dp)
+//            linkTo(parent.start, parent.end, bias = 0.75f)
+//        })
+
+        // Constraint chain
+        createHorizontalChain(button1, button2, button3, chainStyle = ChainStyle.SpreadInside)
+
         MyButton(text = "Button1", Modifier.constrainAs(button1) {
-            top.linkTo(parent.top, margin = 60.dp)
-            linkTo(parent.start, parent.end, bias = 0.75f)
+            centerVerticallyTo(parent)
+        })
+        MyButton(text = "Button2", Modifier.constrainAs(button2) {
+            centerVerticallyTo(parent)
+        })
+        MyButton(text = "Button3", Modifier.constrainAs(button3) {
+            centerVerticallyTo(parent)
         })
     }
 }
