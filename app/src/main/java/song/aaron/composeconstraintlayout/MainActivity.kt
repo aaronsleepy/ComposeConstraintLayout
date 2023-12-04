@@ -47,6 +47,7 @@ fun MainScreen() {
     ConstraintLayout(Modifier.size(width = 200.dp, height = 200.dp)) {
         val (button1, button2, button3) = createRefs()
 
+        // Basic constraint
 //        MyButton(text = "Button1", Modifier.constrainAs(button1) {
 //            top.linkTo(parent.top, margin = 60.dp)
 ////            start.linkTo(parent.start, margin = 30.dp)
@@ -55,16 +56,23 @@ fun MainScreen() {
 //            linkTo(parent.start, parent.end)
 //        })
 
-        MyButton(text = "Button1", Modifier.constrainAs(button1) {
-            centerHorizontallyTo(parent)
-            top.linkTo(parent.top)
-            bottom.linkTo(button2.top)
-        })
+        // Opposing constraint
+//        MyButton(text = "Button1", Modifier.constrainAs(button1) {
+//            centerHorizontallyTo(parent)
+//            top.linkTo(parent.top)
+//            bottom.linkTo(button2.top)
+//        })
+//
+//        MyButton(text = "Button2", Modifier.constrainAs(button2) {
+//            centerHorizontallyTo(parent)
+//            top.linkTo(button1.bottom)
+//            bottom.linkTo(parent.bottom)
+//        })
 
-        MyButton(text = "Button2", Modifier.constrainAs(button2) {
-            centerHorizontallyTo(parent)
-            top.linkTo(button1.bottom)
-            bottom.linkTo(parent.bottom)
+        // Constraint bias
+        MyButton(text = "Button1", Modifier.constrainAs(button1) {
+            top.linkTo(parent.top, margin = 60.dp)
+            linkTo(parent.start, parent.end, bias = 0.75f)
         })
     }
 }
