@@ -45,48 +45,70 @@ fun MyButton(text: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun MainScreen() {
-    ConstraintLayout(Modifier.size(width = 200.dp, height = 200.dp)) {
+//    ConstraintLayout(Modifier.size(width = 200.dp, height = 200.dp)) {
+//        val (button1, button2, button3) = createRefs()
+//
+//        // Basic constraint
+////        MyButton(text = "Button1", Modifier.constrainAs(button1) {
+////            top.linkTo(parent.top, margin = 60.dp)
+//////            start.linkTo(parent.start, margin = 30.dp)
+//////            start.linkTo(parent.start)
+//////            end.linkTo(parent.end)
+////            linkTo(parent.start, parent.end)
+////        })
+//
+//        // Opposing constraint
+////        MyButton(text = "Button1", Modifier.constrainAs(button1) {
+////            centerHorizontallyTo(parent)
+////            top.linkTo(parent.top)
+////            bottom.linkTo(button2.top)
+////        })
+////
+////        MyButton(text = "Button2", Modifier.constrainAs(button2) {
+////            centerHorizontallyTo(parent)
+////            top.linkTo(button1.bottom)
+////            bottom.linkTo(parent.bottom)
+////        })
+//
+//        // Constraint bias
+////        MyButton(text = "Button1", Modifier.constrainAs(button1) {
+////            top.linkTo(parent.top, margin = 60.dp)
+////            linkTo(parent.start, parent.end, bias = 0.75f)
+////        })
+//
+//        // Constraint chain
+////        createHorizontalChain(button1, button2, button3, chainStyle = ChainStyle.SpreadInside)
+////
+////        MyButton(text = "Button1", Modifier.constrainAs(button1) {
+////            centerVerticallyTo(parent)
+////        })
+////        MyButton(text = "Button2", Modifier.constrainAs(button2) {
+////            centerVerticallyTo(parent)
+////        })
+////        MyButton(text = "Button3", Modifier.constrainAs(button3) {
+////            centerVerticallyTo(parent)
+////        })
+//    }
+
+    // Guideline
+    ConstraintLayout(Modifier.size(width = 400.dp, height=220.dp)) {
         val (button1, button2, button3) = createRefs()
 
-        // Basic constraint
-//        MyButton(text = "Button1", Modifier.constrainAs(button1) {
-//            top.linkTo(parent.top, margin = 60.dp)
-////            start.linkTo(parent.start, margin = 30.dp)
-////            start.linkTo(parent.start)
-////            end.linkTo(parent.end)
-//            linkTo(parent.start, parent.end)
-//        })
-
-        // Opposing constraint
-//        MyButton(text = "Button1", Modifier.constrainAs(button1) {
-//            centerHorizontallyTo(parent)
-//            top.linkTo(parent.top)
-//            bottom.linkTo(button2.top)
-//        })
-//
-//        MyButton(text = "Button2", Modifier.constrainAs(button2) {
-//            centerHorizontallyTo(parent)
-//            top.linkTo(button1.bottom)
-//            bottom.linkTo(parent.bottom)
-//        })
-
-        // Constraint bias
-//        MyButton(text = "Button1", Modifier.constrainAs(button1) {
-//            top.linkTo(parent.top, margin = 60.dp)
-//            linkTo(parent.start, parent.end, bias = 0.75f)
-//        })
-
-        // Constraint chain
-        createHorizontalChain(button1, button2, button3, chainStyle = ChainStyle.SpreadInside)
+        val guide = createGuidelineFromStart(fraction = .60f)
 
         MyButton(text = "Button1", Modifier.constrainAs(button1) {
-            centerVerticallyTo(parent)
+            top.linkTo(parent.top, margin=30.dp)
+            end.linkTo(guide, margin = 30.dp)
         })
+
         MyButton(text = "Button2", Modifier.constrainAs(button2) {
-            centerVerticallyTo(parent)
+            top.linkTo(button1.bottom, margin=20.dp)
+            start.linkTo(guide, margin = 40.dp)
         })
+
         MyButton(text = "Button3", Modifier.constrainAs(button3) {
-            centerVerticallyTo(parent)
+            top.linkTo(button2.bottom, margin=40.dp)
+            end.linkTo(guide, margin = 20.dp)
         })
     }
 }
